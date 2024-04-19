@@ -1,3 +1,5 @@
+
+// https://chuangkt.notion.site/PD2-Homework-1-3fce92cd9b504721bdefc0d214e9bad0
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -10,12 +12,12 @@ public class RegExp {
         int s2Count = Integer.parseInt(args[3]);
 
         // For your testing of input correctness
-	/*
-        System.out.println("The input file:" + args[0]);
-        System.out.println("str1=" + str1);
-        System.out.println("str2=" + str2);
-        System.out.println("num of repeated requests of str2 = " + s2Count);
-	*/
+        /*
+         * System.out.println("The input file:" + args[0]);
+         * System.out.println("str1=" + str1);
+         * System.out.println("str2=" + str2);
+         * System.out.println("num of repeated requests of str2 = " + s2Count);
+         */
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader(args[0]));
