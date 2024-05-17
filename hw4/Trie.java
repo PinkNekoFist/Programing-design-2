@@ -29,16 +29,16 @@ public class Trie {
     }
 
     // idf
-    public void insertToAnother(TrieNode root, TrieNode t) {
+    public void insertToAnother(TrieNode r, TrieNode t) {
         if (t == null) return;
-        else if (root == null) {
-            root = new TrieNode();
+        else if (r == null) {
+            r = new TrieNode();
         }
         if (t.numOfword > 0) {
-            root.numOfword++;
+            r.numOfword++;
         }
         for (int i = 0;i < 26;i++) {
-            insertToAnother(root.children[i], t.children[i]);
+            insertToAnother(r.children[i], t.children[i]);
         }
         return;
     }
