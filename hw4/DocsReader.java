@@ -23,7 +23,11 @@ public class DocsReader {
         for (char c : file.toCharArray()) {
             if (c == '\n') numOfn++;
             if (numOfn >= 5) {
-		numOfn = 0;
+		        numOfn = 0;
+
+                if (last != ' ') sb.append(' ');
+                last = ' ';
+
                 docs.add(sb.toString());
                 sb = new StringBuilder();
             } else {
@@ -45,14 +49,14 @@ public class DocsReader {
         int ascii = c;
         if (ascii >= 65 && ascii <= 90) {
             // is upper case
-	    //System.out.println("is upper case");
+	    // System.out.println("is upper case");
             return (char)(ascii+32);
         } else if (ascii >= 97 && ascii <= 122){
             // is lower case
-	    //System.out.println("is lower case");
+	    // System.out.println("is lower case");
             return c;
         }
-	// System.out.println("is not upper or lower case");
+        // System.out.println("is not upper or lower case");
         return ' ';
     }
 
