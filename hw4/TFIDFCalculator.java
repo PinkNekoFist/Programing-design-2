@@ -1,5 +1,6 @@
 public class TFIDFCalculator {
     public static void main (String args[]) {
-	// test
+        DocsReader dr = new DocsReader("/home/share/hw4/docs.txt");
+        System.out.println(dr.getDocs());
     }
 }
