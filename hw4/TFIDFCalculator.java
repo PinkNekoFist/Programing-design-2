@@ -30,7 +30,8 @@ public class TFIDFCalculator {
 
             StringBuilder sb = new StringBuilder();
             for (int i = 0;i < terms.length;i++ ) {
-                System.out.println(tfIdfCalculate(wordsInDoc.get(nums[i]), numsOfDocsHasTerm, terms[i], dr.getDocs().size()));
+                double d = tfIdfCalculate(wordsInDoc.get(nums[i]), numsOfDocsHasTerm, terms[i], dr.getDocs().size());
+                sb.append(roundAndremoveZero(d) + " ");
             }
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
@@ -48,5 +49,10 @@ public class TFIDFCalculator {
     
     public static double tfIdfCalculate(Trie doc, Trie docs, String term, int size) {
       return tf(doc, term) * idf(docs, term, size);
+    }
+
+    public static String roundAndremoveZero(double d) {
+        d = (Math.round(d * 100000.0) / 100000.0);
+        return Double.toString(d);
     }
 }
