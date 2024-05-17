@@ -16,7 +16,7 @@ public class TFIDFCalculator {
             Trie t = new Trie(s);
             wordsInDoc.add(t);
             // if (t.root != null) System.out.println("t is null");
-            numsOfDocsHasTerm.insertToAnother(numsOfDocsHasTerm.root, t.root);
+            numsOfDocsHasTerm.root = numsOfDocsHasTerm.insertToAnother(numsOfDocsHasTerm.root, t.root);
         }
 
         try {

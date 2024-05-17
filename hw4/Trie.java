@@ -29,8 +29,8 @@ public class Trie {
     }
 
     // idf
-    public void insertToAnother(TrieNode r, TrieNode t) {
-        if (t == null) return;
+    public TrieNode insertToAnother(TrieNode r, TrieNode t) {
+        if (t == null) return r;
         else if (r == null) {
             r = new TrieNode();
         }
@@ -40,7 +40,7 @@ public class Trie {
         for (int i = 0;i < 26;i++) {
             insertToAnother(r.children[i], t.children[i]);
         }
-        return;
+        return r;
     }
 
     // Search the word in Trie
