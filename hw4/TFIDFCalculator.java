@@ -33,7 +33,6 @@ public class TFIDFCalculator {
             int nums[] = Arrays.stream(temp).mapToInt(Integer::parseInt).toArray();
             scanner.close();
 
-            // TODO output
             for (int i = 0;i < terms.length;i++ ) {
                 double d = tfIdfCalculate(wordsInDoc.get(nums[i]), numsOfDocsHasTerm, terms[i], dr.getDocs().size());
                 System.out.println(d);
