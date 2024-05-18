@@ -44,6 +44,23 @@ public class Trie {
         return;
     }
 
+    // idf 2
+    public void merge2(TrieNode r, TrieNode t) {
+        if (t == null) return;
+        for (int i = 0;i < 26; i++ ) {
+            if (t.children[i] != null && r.children[i] == null) {
+                r.children[i] = new TrieNode();
+            }
+            if (t.children[i].numOfword > 0) {
+                r.children[i].numOfword++;
+            }
+        }
+        for (int i = 0;i < 26; i++ ) {
+            merge2(r.children[i], t.children[i]);
+        }
+        return;
+    }
+
     // Search the word in Trie
     public int search(String word) {
         TrieNode node = root;

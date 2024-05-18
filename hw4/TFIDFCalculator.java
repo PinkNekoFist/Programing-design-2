@@ -18,7 +18,7 @@ public class TFIDFCalculator {
             wordsInDoc.add(t);
             // if (t.root != null) System.out.println("t is null");
             // TODO
-            numsOfDocsHasTerm.merge(numsOfDocsHasTerm.root, t.root);
+            numsOfDocsHasTerm.merge2(numsOfDocsHasTerm.root, t.root);
         }
 
         try {
