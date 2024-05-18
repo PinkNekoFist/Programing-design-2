@@ -30,7 +30,7 @@ public class Trie {
 
     // idf
     // TODO
-    public void merge(TrieNode r, TrieNode t) {
+    /* public void merge(TrieNode r, TrieNode t) {
         if (t == null) return;
         else if (r == null) {
             r = new TrieNode();
@@ -42,10 +42,9 @@ public class Trie {
             merge(r.children[i], t.children[i]);
         }
         return;
-    }
-
+    } */
     // idf 2
-    public void merge2(TrieNode r, TrieNode t) {
+    public void merge(TrieNode r, TrieNode t) {
         if (t == null) return;
         for (int i = 0;i < 26; i++ ) {
             if (t.children[i] == null) continue;
@@ -57,7 +56,7 @@ public class Trie {
             }
         }
         for (int i = 0;i < 26; i++ ) {
-            merge2(r.children[i], t.children[i]);
+            merge(r.children[i], t.children[i]);
         }
         return;
     }
