@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -31,32 +33,42 @@ public class TFIDFCalculator {
             int nums[] = Arrays.stream(temp).mapToInt(Integer::parseInt).toArray();
             scanner.close();
 
-            StringBuilder sb = new StringBuilder();
+            // TODO output
             for (int i = 0;i < terms.length;i++ ) {
                 double d = tfIdfCalculate(wordsInDoc.get(nums[i]), numsOfDocsHasTerm, terms[i], dr.getDocs().size());
                 System.out.println(d);
-                sb.append(roundAndremoveZero(d) + " ");
+                // output
+                File file = new File("output.txt");
+                if (file.createNewFile()) {
+                    FileWriter fw = new FileWriter(file, true);
+                    fw.write(String.format("%.5f", d) + " ");
+                    fw.close();
+                } else {
+                    FileWriter fw = new FileWriter(file, true);
+                    fw.write(String.format("%.5f", d) + " ");
+                    fw.close();
+                }
             }
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("new file fail");
             e.printStackTrace();
         }
     }
 
     public static double tf(Trie doc, String term) {
-        return doc.search(term) / doc.getSize();
+        System.out.println("tf = " + (float)doc.search(term) / (float)doc.getSize());
+        return ((float)doc.search(term) / (float)doc.getSize());
     }
 
     public static double idf(Trie docs, String term, int size) {
-        return Math.log(size / docs.search(term));
+        System.out.println("idf = " + Math.log((float)size / (float)docs.search(term)));
+        return Math.log((float)size / (float)docs.search(term));
     }
     
     public static double tfIdfCalculate(Trie doc, Trie docs, String term, int size) {
-      return tf(doc, term) * idf(docs, term, size);
-    }
-
-    public static String roundAndremoveZero(double d) {
-        d = (Math.round(d * 100000.0) / 100000.0);
-        return Double.toString(d);
+        return tf(doc, term) * idf(docs, term, size);
     }
 }
