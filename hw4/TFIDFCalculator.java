@@ -34,6 +34,7 @@ public class TFIDFCalculator {
             StringBuilder sb = new StringBuilder();
             for (int i = 0;i < terms.length;i++ ) {
                 double d = tfIdfCalculate(wordsInDoc.get(nums[i]), numsOfDocsHasTerm, terms[i], dr.getDocs().size());
+                System.out.println(d);
                 sb.append(roundAndremoveZero(d) + " ");
             }
         } catch (FileNotFoundException e) {
