@@ -48,7 +48,8 @@ public class Trie {
     public void merge2(TrieNode r, TrieNode t) {
         if (t == null) return;
         for (int i = 0;i < 26; i++ ) {
-            if (t.children[i] != null && r.children[i] == null) {
+            if (t.children[i] == null) continue;
+            if (r.children[i] == null) {
                 r.children[i] = new TrieNode();
             }
             if (t.children[i].numOfword > 0) {
