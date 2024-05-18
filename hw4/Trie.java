@@ -29,8 +29,9 @@ public class Trie {
     }
 
     // idf
-    public TrieNode insertToAnother(TrieNode r, TrieNode t) {
-        if (t == null) return r;
+    // TODO
+    public void merge(TrieNode r, TrieNode t) {
+        if (t == null) return;
         else if (r == null) {
             r = new TrieNode();
         }
@@ -38,9 +39,9 @@ public class Trie {
             r.numOfword++;
         }
         for (int i = 0;i < 26;i++) {
-            insertToAnother(r.children[i], t.children[i]);
+            merge(r.children[i], t.children[i]);
         }
-        return r;
+        return;
     }
 
     // Search the word in Trie

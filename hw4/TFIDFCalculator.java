@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class TFIDFCalculator {
     public static void main (String args[]) {
+        // TODO
         // DocsReader dr = new DocsReader(args[0]);
         DocsReader dr = new DocsReader("/home/share/hw4/docs.txt");
         
@@ -16,10 +17,12 @@ public class TFIDFCalculator {
             Trie t = new Trie(s);
             wordsInDoc.add(t);
             // if (t.root != null) System.out.println("t is null");
-            numsOfDocsHasTerm.root = numsOfDocsHasTerm.insertToAnother(numsOfDocsHasTerm.root, t.root);
+            // TODO
+            numsOfDocsHasTerm.merge(numsOfDocsHasTerm.root, t.root);
         }
 
         try {
+            // TODO
             // File f = new File(args[1]);
             File f = new File("tc0.txt");
             Scanner scanner = new Scanner(f);
