@@ -1,30 +1,25 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class TFIDFCalculator {
     public static void main (String args[]) {
-        // TODO
-        // DocsReader dr = new DocsReader(args[0]);
-        DocsReader dr = new DocsReader("/home/share/hw4/docs.txt");
+        DocsReader dr = new DocsReader(args[0]);
         
         ArrayList<Trie> wordsInDoc = new ArrayList<>();
         Trie numsOfDocsHasTerm = new Trie();
         for (String s : dr.getDocs()) {
-            // s is 5 line doc
             Trie t = new Trie(s);
             wordsInDoc.add(t);
-            // if (t.root != null) System.out.println("t is null");
-            // TODO
-            numsOfDocsHasTerm.merge2(numsOfDocsHasTerm.root, t.root);
+            numsOfDocsHasTerm.merge(numsOfDocsHasTerm.root, t.root);
         }
 
         try {
-            // TODO
-            // File f = new File(args[1]);
-            File f = new File("tc0.txt");
+            File f = new File(args[1]);
             Scanner scanner = new Scanner(f);
             String terms[] = scanner.nextLine().split(" ");
             String temp[] = scanner.nextLine().split(" ");
@@ -34,29 +29,30 @@ public class TFIDFCalculator {
             StringBuilder sb = new StringBuilder();
             for (int i = 0;i < terms.length;i++ ) {
                 double d = tfIdfCalculate(wordsInDoc.get(nums[i]), numsOfDocsHasTerm, terms[i], dr.getDocs().size());
-                System.out.println(d);
-                sb.append(roundAndremoveZero(d) + " ");
+                sb.append(String.format("%.5f", d) + " ");
             }
+            File file = new File("output.txt");
+            FileWriter fw = new FileWriter(file, false);
+            fw.write(sb.toString());
+            fw.close();
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("new file fail");
             e.printStackTrace();
         }
     }
 
     public static double tf(Trie doc, String term) {
-        return doc.search(term) / doc.getSize();
+        return ((float)doc.search(term) / (float)doc.getSize());
     }
 
     public static double idf(Trie docs, String term, int size) {
-        return Math.log(size / docs.search(term));
+        return Math.log((float)size / (float)docs.search(term));
     }
     
     public static double tfIdfCalculate(Trie doc, Trie docs, String term, int size) {
-      return tf(doc, term) * idf(docs, term, size);
-    }
-
-    public static String roundAndremoveZero(double d) {
-        d = (Math.round(d * 100000.0) / 100000.0);
-        return Double.toString(d);
+        return tf(doc, term) * idf(docs, term, size);
     }
 }
