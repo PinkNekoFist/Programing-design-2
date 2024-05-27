@@ -10,7 +10,7 @@ public class BuildIndex {
         Indexer idx = new Indexer(Paths.get(args[0]));
         try {
             String fileName = f.getName();
-            String temp[] = fileName.split(fileName);
+            String temp[] = fileName.split(".");
             FileOutputStream fos = new FileOutputStream((temp[0] + ".ser"));
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(idx);
